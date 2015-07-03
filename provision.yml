@@ -1,0 +1,25 @@
+- hosts: all
+  tasks:
+    - name: set timezone to JST
+      shell: >-
+        echo "Asia/Tokyo" > /etc/timezone &&
+        dpkg-reconfigure --frontend noninteractive tzdata
+      sudo: yes
+    - name: install Git
+      apt: name=git state=latest
+      sudo: yes
+    - name: install pip
+      apt: name=python-pip state=latest
+      sudo: yes
+    - name: install python-dev
+      apt: name=python-dev state=latest
+      sudo: yes
+    - name: install python-scipy
+      apt: name=python-scipy state=latest
+      sudo: yes
+    - name: install scikit-learn
+      shell: pip install scikit-learn
+      sudo: yes
+    - name: install Chainer
+      shell: pip install chainer
+      sudo: yes
